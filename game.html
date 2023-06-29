@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <script type="text/javascript" src="wgo/wgo.js"></script>
+    <script src="wgo/wgo.player.min.js"></script>
+    <link rel="stylesheet" href="wgo/wgo.player.css" />
+  </head>
+  <body>
+    <div id="root"></div>
+  </body>
+  <script>
+    var board = new WGo.Board(document.getElementById("root"), {
+      size: 9,
+      width: 800,
+    });
+
+    var coordinates = {
+      // draw on grid layer
+      grid: {
+        draw: function (args, board) {
+          var ch, t, xright, xleft, ytop, ybottom;
+
+          this.fillStyle = "rgba(0,0,0,0.7)";
+          this.textBaseline = "middle";
+          this.textAlign = "center";
+          this.font = board.stoneRadius + "px " + (board.font || "");
+
+          xright = board.getX(-0.5);
+          xleft = board.getX(board.size - 0.5);
+          ytop = board.getY(-0.5);
+          ybottom = board.getY(board.size - 0.5);
+
+          for (var i = 0; i < board.size; i++) {
+            ch = i + "A".charCodeAt(0);
+            if (ch >= "I".charCodeAt(0)) ch++;
+
+            t = board.getY(i);
+            this.fillText(board.size - i, xright, t);
+            this.fillText(board.size - i, xleft, t);
+
+            t = board.getX(i);
+            this.fillText(String.fromCharCode(ch), t, ytop);
+            this.fillText(String.fromCharCode(ch), t, ybottom);
+          }
+
+          this.fillStyle = "black";
+        },
+      },
+    };
+    board.addCustomObject(coordinates);
+  </script>
+</html>
+
+<!-- 
+  1. 끄집어오기(wgo)
+  2. 번들로 묶기
+  3. UI 분리하기
+  4. 앱으로 만들기
+  5. 회원정보 묶기
+  6. 사이트 빌드
+ -->
+<!-- 
+  보드
+  -업데이트 할 필요 없음(어차피 grid에 돌 설치)
+  -이벤트가 노출되지 않아야함(*중요*)
+  -최대한 간결하게(websocket 필수)
+ -->

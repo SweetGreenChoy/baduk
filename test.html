@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>WGO test</title>
+    <script type="text/javascript" src="wgo/wgo.js"></script>
+    <script src="wgo/wgo.player.min.js"></script>
+    <link rel="stylesheet" href="wgo/wgo.player.css">
+</head>
+<body>
+    <select id="boardSize" style="display: block; margin-bottom: 10px;">
+        <option value=9 selected>Board size 9</option>
+        <option value=13 selected>Board size 13</option>
+        <option value=19 selected>Board size 19</option>
+    </select>
+    <select id="tool" style="display: block; margin-bottom: 10px;">
+        <option value="black" selected>Black stone</option>
+        <option value="white">White stone</option>
+        <option value="SQ">Square</option>
+        <option value="TR">Triangle</option>
+        <option value="CR">Circle</option>
+        <option value="remove">Remove</option>
+      </select>
+    <div id="Goban" style="height: auto; padding-top: 0px;">
+        <script>
+            var board = new WGo.Board(document.getElementById("Goban"), {
+                size: 13,
+                width: 800,
+    });
+        </script>
+    </div>
+</body>
+    <script>
+
+        var tool = document.getElementById("tool"); // get the <select> element
+
+        board.addEventListener("click", function(x, y) {
+            if(tool.value == "black") {
+                board.addObject({
+                    x: x,
+                    y: y,
+                    c: WGo.B
+                });
+            }
+            else if(tool.value == "white") {
+                board.addObject({
+                    x: x,
+                    y: y,
+                    c: WGo.W
+                });
+            }
+            else if(tool.value == "remove") {
+                board.removeObjectsAt(x, y);
+            }
+            else {
+                board.addObject({
+                    x: x,
+                    y: y,
+                    type: tool.value
+                });
+            }
+        });
+
+        var coordinates = {
+    // draw on grid layer
+            grid: {
+                draw: function(args, board) {
+                    var ch, t, xright, xleft, ytop, ybottom;
+                    
+                    this.fillStyle = "rgba(0,0,0,0.7)";
+                    this.textBaseline="middle";
+                    this.textAlign="center";
+                    this.font = board.stoneRadius+"px "+(board.font || "");
+                    
+                    xright = board.getX(-0.5);
+                    xleft = board.getX(board.size-0.5);
+                    ytop = board.getY(-0.5);
+                    ybottom = board.getY(board.size-0.5);
+                    
+                    for(var i = 0; i < board.size; i++) {
+                        ch = i+"A".charCodeAt(0);
+                        if(ch >= "I".charCodeAt(0)) ch++;
+                        
+                        t = board.getY(i);
+                        this.fillText(board.size-i, xright, t);
+                        this.fillText(board.size-i, xleft, t);
+                        
+                        t = board.getX(i);
+                        this.fillText(String.fromCharCode(ch), t, ytop);
+                        this.fillText(String.fromCharCode(ch), t, ybottom);
+                    }
+                    
+                    this.fillStyle = "black";
+                }
+            }
+        }
+        board.addCustomObject(coordinates);
+    </script>
+</html>
