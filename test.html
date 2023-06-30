@@ -34,15 +34,18 @@
     =WGo.game
 
     add event for click = stone placement
-    
+    va
 
 
 -->
 
 </body>
     <script>
+         var tool = document.getElementById("tool"); // get the <select> element
 
-        var tool = document.getElementById("tool"); // get the <select> element
+        var game = new WGo.Game({
+            size: 13,
+        })
 
         board.addEventListener("click", function(x, y) {
             if(tool.value == "black") {

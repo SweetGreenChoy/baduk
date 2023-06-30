@@ -6,16 +6,38 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Document</title>
     <script type="text/javascript" src="wgo/wgo.js"></script>
-    <script src="wgo/wgo.player.min.js"></script>
+    <script src="wgo/player.js"></script>
     <link rel="stylesheet" href="wgo/wgo.player.css" />
   </head>
   <body>
     <div id="root"></div>
+    <select id="tool" style="display: block; margin-bottom: 10px">
+      <option value="black" selected>Black stone</option>
+      <option value="white">White stone</option>
+      <option value="SQ">Square</option>
+      <option value="TR">Triangle</option>
+      <option value="CR">Circle</option>
+      <option value="remove">Remove</option>
+    </select>
   </body>
   <script>
     var board = new WGo.Board(document.getElementById("root"), {
       size: 9,
       width: 800,
+    });
+
+    function gameStart() {
+      var game = new WGo.Game();
+    }
+
+    var stonePlacement = board.addEventListener("click", function (x, y) {
+      if (tool.value == "black") {
+        board.addObject({
+          x: x,
+          y: y,
+          c: WGo.B,
+        });
+      }
     });
 
     var coordinates = {
