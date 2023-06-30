@@ -1,3 +1,6 @@
 import * from "./wgo.js"
 import * from "./player.js"
-
+import * from "./basicplayer.js"
+import * from "./basicplayer.component.js"
+import * from "./basicplayer.control.js"
+import * from "./wgo.player.min.js"
