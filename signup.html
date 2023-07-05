@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="./shared.css" />
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.0/jquery.min.js"></script>
+    <link rel="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css"/>
+    <title>회원가입 페이지</title>
+    <script src="./shared.js"></script>
+  </head>
+  <body>
+    <div class="logo"></div>
+    <h1>회원가입</h1>
+    <form id="signin_form" action="/signin" method="POST">
+      <input type="hidden">
+      <div id="necesito">
+        <input type="text" id="username" name="username" placeholder="아이디"/>
+        <input type="password" id="password" name="password" placeholder="비밀번호"/>
+        <i class="reveal"></i>
+        <input type="password" id="pwConfirm" name="pwConfirm" placeholder="비밀번호 확인"/>
+        <i class="reveal"></i>
+      </div>
+      <div id="personal">
+        <input type="text" placeholder="이름">
+        <input type="text" placeholder="닉네임">
+        <input type="email" placeholder="이메일주소">
+        <input type="text" placeholder="전화번호">
+        <form class="gender">성별
+          <fieldset>
+            <legend>성별</legend>
+            <label>남자<input type="checkbox" name="gender" /></label>
+            <label>여자<input type="checkbox" name="gender"/></label>
+          </fieldset>
+
+        </form>
+      </div>
+  </body>
+</html>
+
+<!--
+    -관리자 페이지 필요?
+    -어드민 어카운트는?
+-->

@@ -1,7 +1,7 @@
 // This file serves as template for translations
 // You can just replace english strings with translated strings.
 
-WGo.lang = "en"; // set language code
+WGo.lang = "kr"; // set language code
 
 WGo.i18n[WGo.lang] = {
   "about-text":
@@ -10,16 +10,16 @@ WGo.i18n[WGo.lang] = {
     "<p>WGo.js is open source licensed under <a href='http://en.wikipedia.org/wiki/MIT_License' target='_blank'>MIT license</a>. You can use and modify any code from this project.</p>" +
     "<p>You can find more information at <a href='http://wgo.waltheri.net/player' target='_blank'>wgo.waltheri.net/player</a></p>" +
     "<p>Copyright &copy; 2013 Jan Prokop</p>",
-  black: "Black",
-  white: "White",
-  DT: "Date",
-  KM: "Komi",
-  HA: "Handicap",
-  AN: "Annotations",
+  black: "흑",
+  white: "백",
+  DT: "날짜",
+  KM: "덤",
+  HA: "접바둑",
+  AN: "주석",
   CP: "Copyright",
-  GC: "Game comments",
-  GN: "Game name",
-  ON: "Fuseki",
+  GC: "게임 주석",
+  GN: "게임 이름",
+  ON: "포석",
   OT: "Overtime",
   TM: "Basic time",
   RE: "Result",
